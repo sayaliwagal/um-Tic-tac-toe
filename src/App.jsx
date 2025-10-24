@@ -38,7 +38,7 @@ const App = () => {
     }
   }
   const handleRestart = () => {
-    resetGame()
+    restartGame();
   }
 
   if(!gameStarted){

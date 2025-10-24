@@ -74,7 +74,7 @@ export const useGameLogic = (gameMode, playerSymbol) => {
   const resetGame = () => {
     const newBoard = Array(9).fill(null);
     setBoard(newBoard);
-    setplayer("X");
+    setPlayer("X");
     setWinner(null);
     setWinnerLine(null);
     setGameStatus("playing");

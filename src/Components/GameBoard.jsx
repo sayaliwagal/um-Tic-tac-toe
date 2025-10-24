@@ -73,7 +73,8 @@ const GameBoard = ({
             TO PLAY
           </span>
         </div>
-        <button className="bg-primary-silver opacity-80 py-2 px-4 rounded-xl flex items-center justify-center transition-all duration-200 transform hover:scale-105">
+        <button onClick={onRestart}
+        className="bg-primary-silver opacity-80 py-2 px-4 rounded-xl flex items-center justify-center transition-all duration-200 transform hover:scale-105">
           Restart
         </button>
       </div>
