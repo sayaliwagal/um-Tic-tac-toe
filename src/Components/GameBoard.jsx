@@ -79,16 +79,39 @@ const GameBoard = ({
       </div>
       <div className="grid grid-cols-3 gap-4 mb-6">
         {board.map((cell, index) => {
-         return  <div 
-          key={index} 
-          className={getCellClass(index)}
-          onClick={() => handleCellClick(index)}
-          onMouseEnter={() => handleCellHover(index)}
-          onMouseLeave={handleCellLeave}
-          >
-            <div className="size-full animate-scale-in"></div>
-          </div>
+          return (
+            <div
+              key={index}
+              className={getCellClass(index)}
+              onClick={() => handleCellClick(index)}
+              onMouseEnter={() => handleCellHover(index)}
+              onMouseLeave={handleCellLeave}
+            >
+              <div className="size-full animate-scale-in"></div>
+            </div>
+          );
         })}
+      </div>
+      <div className="grid grid-cols-3 gap-4">
+        <div className="bg-primary-teal rounded-2xl p-4 text-center">
+          <div className="text-primary-dark text-sm font-bold mb-1">
+            X {getPlayerLabel("X")}
+          </div>
+          <div className="text-primary-dark text-2xl font-bold">{scores.X}</div>
+        </div>
+        <div className="bg-primary-silver rounded-2xl p-4 text-center">
+          <div className="text-primary-dark text-sm font-bold mb-1">TIES</div>
+          <div className="text-primary-dark text-2xl font-bold">
+            {scores.ties}
+          </div>
+        </div>
+
+        <div className="bg-primary-orange rounded-2xl p-4 text-center">
+          <div className="text-primary-dark text-sm font-bold mb-1">
+            O ({getPlayerLabel("O")})
+          </div>
+          <div className="text-primary-dark text-2xl font-bold">{scores.O}</div>
+        </div>
       </div>
     </div>
   );
