@@ -1,91 +1,124 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
-  [6, 7, 8], // row combo for winning
+  [6, 7, 8], // Rows
   [0, 3, 6],
   [1, 4, 7],
-  [2, 5, 8], // column combo for winning
+  [2, 5, 8], // Columns
   [0, 4, 8],
-  [2, 4, 6], // digonal combo for winning
+  [2, 4, 6], // Diagonals;
 ];
 
 export const useGameLogic = (gameMode, playerSymbol) => {
   const [board, setBoard] = useLocalStorage(
-    "tic-tac-toe-board",
+    "tic-tac-tie-board",
     Array(9).fill(null)
   );
-  const [currentPlayer, setCurrentPlayer] = useLocalStorage("tic-tac-toe-player", "X");
+  const [currentPlayer, setCurrentPlayer] = useLocalStorage(
+    "tic-tac-toe-player",
+    "X"
+  );
 
   const [winner, setWinner] = useState(null);
-  const [winnerLine, setWinnerLine] = useState(null);
+  const [winningLine, setWinningLine] = useState(null);
   const [gameStatus, setGameStatus] = useState("playing");
 
   const cpuSymbol = playerSymbol === "X" ? "O" : "X";
 
   useEffect(() => {
-    const checkWinning = () => {
+    const checkWinner = () => {
       for (let combination of WINNING_COMBINATIONS) {
         const [a, b, c] = combination;
+
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
           setWinner(board[a]);
-          setWinnerLine(combination);
-          setGameStatus("Won");
+          setWinningLine(combination);
+          setGameStatus("won");
           return;
         }
       }
-      //checking for Tie
+
+      // Tie
       if (board.every((cell) => cell !== null)) {
-        setGameStatus("Tie");
+        setGameStatus("tie");
         return;
       }
 
       setWinner(null);
-      setWinnerLine(null);
-      setGameStatus("Playing");
+      setWinningLine(null);
+      setGameStatus("playing");
     };
-    checkWinning();
-  }, []);
 
-  const makeMove = useCallback((index) => {
-    if(board[index] !== null && gameStatus !== "playing") return;
+    checkWinner();
+  }, [board]);
 
-    const newBoard = [...board];
-    newBoard[index] = currentPlayer;
-    setBoard(newBoard);
-    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
-  }, [board, gameStatus, setBoard, currentPlayer, setCurrentPlayer]);
+  const makeMove = useCallback(
+    (index) => {
+      if (board[index] !== null || gameStatus !== "playing") return;
 
-  // AI moves 
+      const newBoard = [...board];
+      newBoard[index] = currentPlayer;
+      setBoard(newBoard);
+      setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+    },
+    [board, gameStatus, currentPlayer, setBoard, setCurrentPlayer]
+  );
+
+  // AI moves
   useEffect(() => {
-    if(gameMode === 'solo' && currentPlayer === cpuSymbol && gameStatus === "playing"){
-      const timer = setTimeout(() =>{
+    if (
+      gameMode === "solo" &&
+      currentPlayer === cpuSymbol &&
+      gameStatus === "playing"
+    ) {
+      const timer = setTimeout(() => {
         const bestMove = getBestMove(board, cpuSymbol, playerSymbol);
-        if(bestMove !== -1){
+
+        if (bestMove !== -1) {
           makeMove(bestMove);
         }
-      }, 500)
+      }, 500);
+
       return () => clearTimeout(timer);
     }
-  }, [currentPlayer, gameMode, gameStatus, board, cpuSymbol, playerSymbol, makeMove])
+  }, [
+    currentPlayer,
+    gameMode,
+    gameStatus,
+    board,
+    cpuSymbol,
+    playerSymbol,
+    makeMove,
+  ]);
 
   const resetGame = () => {
     const newBoard = Array(9).fill(null);
     setBoard(newBoard);
-    setPlayer("X");
+    setCurrentPlayer("X");
     setWinner(null);
-    setWinnerLine(null);
+    setWinningLine(null);
     setGameStatus("playing");
   };
 
   const restartGame = () => {
-    if(window.confirm("Are you sure you want to restart the game"))
+    if (window.confirm("Are you sure you want to restart the game")) {
       resetGame();
+    }
   };
 
-  return {board, currentPlayer, winner, winnerLine, gameMode, gameStatus, makeMove, resetGame, restartGame}
+  return {
+    board,
+    currentPlayer,
+    winner,
+    winningLine,
+    gameStatus,
+    makeMove,
+    resetGame,
+    restartGame,
+  };
 };
 
 const getBestMove = (board, aiSymbol, humanSymbol) => {

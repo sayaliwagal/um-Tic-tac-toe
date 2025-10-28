@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const GameBoard = ({
+export default function GameBoard({
   board,
   currentPlayer,
   onCellClick,
@@ -9,7 +9,7 @@ const GameBoard = ({
   playerSymbol,
   scores,
   winningLine,
-}) => {
+}) {
   const [hoveredCell, setHoveredCell] = useState(null);
 
   const handleCellClick = (index) => {
@@ -27,13 +27,16 @@ const GameBoard = ({
   const handleCellLeave = () => {
     setHoveredCell(null);
   };
+
   const getCellClass = (index) => {
     let baseClass =
       "w-full aspect-square bg-primary-light rounded-2xl cursor-pointer transition-all duration-200 hover:shadow-lg transform hover:scale-105 flex items-center justify-center";
+
     if (winningLine && winningLine.includes(index)) {
       baseClass +=
-        board[index] === "X" ? " bg-primary-teal" : " bg-primary-orange";
+        board[index] === "X" ? "bg-primary-teal" : "bg-primary-orange";
     }
+
     if (board[index]) {
       baseClass += board[index] === "X" ? " cell-x" : " cell-o";
     } else if (hoveredCell === index) {
@@ -44,6 +47,7 @@ const GameBoard = ({
     if (board[index] !== null) {
       baseClass += " cursor-default";
     }
+
     return baseClass;
   };
 
@@ -55,6 +59,7 @@ const GameBoard = ({
         return "CPU";
       }
     }
+
     return "PLAYER";
   };
 
@@ -62,44 +67,50 @@ const GameBoard = ({
     <div className="animate-fade-in">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center space-x-2">
-          <div className="size-12 cell-x"></div>
-          <div className="size-12 cell-o"></div>
+          <div className="size-8 cell-x"></div>
+          <div className="size-8 cell-0"></div>
         </div>
+
         <div className="bg-primary-light px-4 py-2 rounded-xl flex items-center space-x-2">
           <div
-            className={`size-12 ${currentPlayer === "X" ? "cell-x" : "cell-o"}`}
+            className={`size-12 ${currentPlayer === "" ? "cell-x" : "cell-o"}`}
           ></div>
           <span className="text-primary-silver text-sm font-bold tracking-wide">
             TO PLAY
           </span>
         </div>
-        <button onClick={onRestart}
-        className="bg-primary-silver opacity-80 py-2 px-4 rounded-xl flex items-center justify-center transition-all duration-200 transform hover:scale-105">
+
+        <button
+          onClick={onRestart}
+          className="bg-primary-silver py-2 px-4 rounded-xl flex items-center justify-center transition-all duration-200 transform hover:scale-105"
+        >
           Restart
         </button>
       </div>
+
       <div className="grid grid-cols-3 gap-4 mb-6">
-        {board.map((cell, index) => {
-          return (
-            <div
-              key={index}
-              className={getCellClass(index)}
-              onClick={() => handleCellClick(index)}
-              onMouseEnter={() => handleCellHover(index)}
-              onMouseLeave={handleCellLeave}
-            >
-              <div className="size-full animate-scale-in"></div>
-            </div>
-          );
-        })}
+        {board.map((cell, index) => (
+          <div
+            key={index}
+            className={getCellClass(index)}
+            onClick={() => handleCellClick(index)}
+            onMouseEnter={() => handleCellHover(index)}
+            onMouseLeave={() => handleCellLeave}
+          >
+            <div className="size-full animate-scale-in"></div>
+          </div>
+        ))}
       </div>
+
       <div className="grid grid-cols-3 gap-4">
         <div className="bg-primary-teal rounded-2xl p-4 text-center">
           <div className="text-primary-dark text-sm font-bold mb-1">
-            X {getPlayerLabel("X")}
+            X ({getPlayerLabel("X")})
           </div>
+
           <div className="text-primary-dark text-2xl font-bold">{scores.X}</div>
         </div>
+
         <div className="bg-primary-silver rounded-2xl p-4 text-center">
           <div className="text-primary-dark text-sm font-bold mb-1">TIES</div>
           <div className="text-primary-dark text-2xl font-bold">
@@ -111,11 +122,10 @@ const GameBoard = ({
           <div className="text-primary-dark text-sm font-bold mb-1">
             O ({getPlayerLabel("O")})
           </div>
+
           <div className="text-primary-dark text-2xl font-bold">{scores.O}</div>
         </div>
       </div>
     </div>
   );
-};
-
-export default GameBoard;
+}
