@@ -39,31 +39,28 @@ Stores and manages scores persistently using a custom local storage hook.
 
 🗂️ Folder Structure
 um-Tic-tac-toe/
-	```
-{
-│
-├── src/
-│   ├── Components/
-│   │   ├── GameSetup.jsx
-│   │   ├── GameBoard.jsx
-│   │   └── WinMode.jsx
-│   ├── utilites/
-│   │   └── Hooks/
-│   │       ├── useLocalStorage.jsx
-│   │       └── useGameLogic.jsx
-│   ├── App.jsx
-│   ├── App.css
-│   └── main.jsx
+my-project/
 │
 ├── public/
 ├── index.html
-|
+│
+├── src/
+│ ├── Components/
+│ │ ├── GameBoard.jsx
+│ │ ├── GameSetup.jsx
+│ │ └── WinMode.jsx
+│ ├── utils/
+│ │ ├── useLocalStorage.jsx
+│ │ └── useGameLogic.jsx
+│ ├── App.jsx
+│ ├── App.css
+│ └── main.jsx
 │
 ├── package.json
-├── vite.config.js
+├── tailwind.config.js
 └── README.md
-}
-```
+
+
 🖥️ How to Run Locally
 # 1️⃣ Clone the repository
 git clone https://github.com/sayaliwagal/um-Tic-tac-toe.git
