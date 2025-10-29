@@ -1,16 +1,103 @@
-# React + Vite
+🎮 Tic-Tac-Toe Game
+ 
+A modern two-player Tic-Tac-Toe game built using React.js and Tailwind CSS.
+This project showcases interactive gameplay, responsive design, and clean component-based architecture.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ [Live Demo Available Here!](https://umtictactoe.netlify.app/)
+🚀 Tech Stack
+Category	Technologies
+Frontend Framework	⚛️ React.js
+Styling	🎨 Tailwind CSS
+State Management	React Hooks (useState, useEffect, Custom Hooks)
+Build Tool	Vite
+Deployment	Netlify / Vercel
+🧾 Project Description
 
-Currently, two official plugins are available:
+The Tic-Tac-Toe Game is a browser-based implementation of the classic 3x3 board game where two players — X and O — take turns to mark spaces on the grid.
+The first player to align three symbols in a row, column, or diagonal wins.
+If all cells are filled without a winner, the game ends in a tie.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎯 Key Features
 
-## React Compiler
+✅ Interactive 3x3 game board with dynamic updates
+✅ Turn-based play between Player X and Player O
+✅ Real-time winner and tie detection
+✅ Restart/New Game button for replay
+✅ Fully responsive design (mobile + desktop)
+✅ Clean animations and smooth transitions
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🧠 Game Logic Overview
 
-## Expanding the ESLint configuration
+Maintains state for board, current player, and game result using React hooks.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Checks all winning combinations (rows, columns, diagonals).
+
+Disables further moves after a win or tie.
+
+Stores and manages scores persistently using a custom local storage hook.
+
+🗂️ Folder Structure
+um-Tic-tac-toe/
+│
+├── src/
+│   ├── Components/
+│   │   ├── GameSetup.jsx
+│   │   ├── GameBoard.jsx
+│   │   └── WinMode.jsx
+│   ├── utilites/
+│   │   └── Hooks/
+│   │       ├── useLocalStorage.jsx
+│   │       └── useGameLogic.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   └── main.jsx
+│
+├── public/
+├── index.html
+|
+│
+├── package.json
+├── vite.config.js
+└── README.md
+
+🖥️ How to Run Locally
+# 1️⃣ Clone the repository
+git clone https://github.com/sayaliwagal/um-Tic-tac-toe.git
+
+# 2️⃣ Navigate into the project directory
+cd um-Tic-tac-toe
+
+# 3️⃣ Install dependencies
+npm install
+
+# 4️⃣ Start the development server
+npm run dev
+
+
+Your app will now be available at http://localhost:5173/
+ 🎉
+
+📱 Responsiveness
+
+Styled with Tailwind’s responsive utilities for seamless adaptability.
+
+Works perfectly on both mobile and desktop screens.
+
+🧪 Evaluation Criteria
+Criteria	Description
+Functionality	Game logic, turn handling, and win/tie detection
+UI/UX	Clean, modern, and responsive design
+Code Quality	Modular components, reusable logic, and clear structure
+Performance	Smooth rendering with optimized state updates
+🧑‍💻 Developer
+
+Sayali Wagal
+📧 sayaliwagal90@gmail.com
+
+🔗 [GitHub](https://github.com/sayaliwagal)
+
+💼 LinkedIn [LinkedIn](https://www.linkedin.com/in/sayali-wagal-521b3b1b0/)
+
+
+	
+	
