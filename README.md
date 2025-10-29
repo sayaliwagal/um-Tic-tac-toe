@@ -4,6 +4,7 @@ A modern two-player Tic-Tac-Toe game built using React.js and Tailwind CSS.
 This project showcases interactive gameplay, responsive design, and clean component-based architecture.
 
  [Live Demo Available Here!](https://umtictactoe.netlify.app/)
+ 
 🚀 Tech Stack
 Category	Technologies
 Frontend Framework	⚛️ React.js
