@@ -1,7 +1,7 @@
 import { useState } from "react";
-import GameBoard from "./components/GameBoard";
-import GameSetup from "./components/GameSetup";
-import WinModal from "./components/WinModal";
+import GameBoard from "./Components/GameBoard";
+import GameSetup from "./Components/GameSetup";
+import WinModal from "./Components/WinModal";
 import { useLocalStorage } from "./utilites/Hooks/useLocalStorage";
 import { useGameLogic } from "./utilites/Hooks/useGameLogic";
 import "./App.css";
@@ -9,7 +9,7 @@ import "./App.css";
 export default function App() {
   const [gameMode, setGameMode] = useState(null);
   const [playerSymbol, setPlayerSymbol] = useState("X");
-  const [gameStarted, setGameStarted] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
 
   const [scores, setScores] = useLocalStorage("ttt-scores", {
     X: 0,

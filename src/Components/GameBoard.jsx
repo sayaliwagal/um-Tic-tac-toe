@@ -68,12 +68,12 @@ export default function GameBoard({
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center space-x-2">
           <div className="size-8 cell-x"></div>
-          <div className="size-8 cell-0"></div>
+          <div className="size-8 cell-o"></div>
         </div>
 
         <div className="bg-primary-light px-4 py-2 rounded-xl flex items-center space-x-2">
           <div
-            className={`size-12 ${currentPlayer === "" ? "cell-x" : "cell-o"}`}
+            className={`size-12 ${currentPlayer === "X" ? "cell-x" : "cell-o"}`}
           ></div>
           <span className="text-primary-silver text-sm font-bold tracking-wide">
             TO PLAY
