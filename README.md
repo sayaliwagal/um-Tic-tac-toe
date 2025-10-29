@@ -38,6 +38,7 @@ Disables further moves after a win or tie.
 Stores and manages scores persistently using a custom local storage hook.
 
 🗂️ Folder Structure
+```bash
 um-Tic-tac-toe/
 my-project/
 │
@@ -59,7 +60,7 @@ my-project/
 ├── package.json
 ├── tailwind.config.js
 └── README.md
-
+```
 
 🖥️ How to Run Locally
 # 1️⃣ Clone the repository
